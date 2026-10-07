@@ -1,0 +1,361 @@
+/* ==========================================================================
+   Base: reset, typography, accessibility, motion primitives
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+  background: var(--ink);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  font-family: var(--ff-sans);
+  font-size: var(--fs-body);
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+dl,
+dd,
+figure,
+blockquote {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--ff-serif);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.012em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+picture,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+strong {
+  font-weight: 600;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+/* Keyboard focus is always visible */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: var(--z-skip);
+  padding: 0.75rem 1.25rem;
+  background: var(--gold);
+  color: var(--ink);
+  font-weight: 600;
+  transform: translateY(-200%);
+  transition: transform var(--dur-2) var(--ease);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+/* ---------- Layout primitives ---------- */
+.container {
+  width: min(100% - 2 * var(--gutter), var(--container));
+  margin-inline: auto;
+}
+
+.section {
+  position: relative;
+  padding-block: var(--section-y);
+}
+
+/* Render below-the-fold sections lazily. Without this the browser lays out the whole
+   13,000px page before the first paint (measured: first paint ~5x slower on a throttled
+   phone). Content stays in the DOM, accessibility tree and find-in-page; `auto` makes the
+   browser remember each section's real height once it has been rendered. */
+.section,
+.trust,
+.footer {
+  content-visibility: auto;
+  contain-intrinsic-size: auto var(--cis, 900px);
+}
+
+/* Measured section heights (px). Accurate placeholders mean almost nothing moves when a
+   skipped section is rendered. Two regimes: wide desktop layouts and everything narrower. */
+.trust { --cis: 310px; }
+#enfoque { --cis: 1440px; }
+#areas { --cis: 2800px; }
+#diferencia { --cis: 1200px; }
+#proceso { --cis: 800px; }
+#situaciones { --cis: 1650px; }
+#despacho { --cis: 1200px; }
+#preguntas { --cis: 870px; }
+#contacto { --cis: 1180px; }
+.footer { --cis: 600px; }
+
+@media (max-width: 999px) {
+  .trust { --cis: 450px; }
+  #enfoque { --cis: 1450px; }
+  #areas { --cis: 3800px; }
+  #diferencia { --cis: 1150px; }
+  #proceso { --cis: 1100px; }
+  #situaciones { --cis: 2550px; }
+  #despacho { --cis: 1500px; }
+  #preguntas { --cis: 980px; }
+  #contacto { --cis: 1750px; }
+  .footer { --cis: 900px; }
+}
+
+/* Skipped sections only have estimated heights, which would break anchor jumps and cause
+   scroll jumps. RevealObserver therefore renders them one by one in idle time right after
+   the first paint (.cv-ready), and all at once (.cv-off on <html>) the moment an in-page
+   link is followed. Once rendered, a section is never skipped again. `:target` covers a
+   link followed before JavaScript has loaded. */
+html:has(:target) .section,
+html:has(:target) .trust,
+html:has(:target) .footer,
+.cv-off .section,
+.cv-off .trust,
+.cv-off .footer,
+.section.cv-ready,
+.trust.cv-ready,
+.footer.cv-ready {
+  content-visibility: visible;
+}
+
+.section--ink {
+  background: var(--ink);
+  color: var(--on-ink);
+}
+
+.section--ink-2 {
+  background: var(--ink-2);
+  color: var(--on-ink);
+}
+
+.section--paper-2 {
+  background: var(--paper-2);
+}
+
+/* ---------- Typography primitives ---------- */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.875rem;
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-ink);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 2.5rem;
+  height: 1px;
+  background: currentColor;
+}
+
+.section--ink .eyebrow,
+.section--ink-2 .eyebrow {
+  color: var(--gold);
+}
+
+/* Gold text on photography-dark hero bands (these are not .section--ink) */
+.hero .eyebrow,
+.page-hero .eyebrow {
+  color: var(--gold);
+}
+
+.eyebrow--wrap {
+  flex-wrap: wrap;
+}
+
+@media (max-width: 520px) {
+  /* the credential wraps onto its own line on phones: no dangling dot */
+  .eyebrow--wrap {
+    gap: 0.25rem 0.875rem;
+  }
+
+  .eyebrow__dot {
+    display: none;
+  }
+}
+
+.eyebrow__dot {
+  width: 0.3125rem;
+  height: 0.3125rem;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.7;
+}
+
+.h2 {
+  font-size: var(--fs-h2);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+
+.lead {
+  font-size: var(--fs-lead);
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.section--ink .lead,
+.section--ink-2 .lead {
+  color: var(--on-ink-muted);
+}
+
+.section-head {
+  display: grid;
+  gap: var(--sp-5);
+  max-width: 62rem;
+  margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+/* ---------- Motion ---------- */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 1.5rem, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Soft route transitions: each page's <main> fades in when it mounts. */
+.page {
+  animation: page-in 520ms var(--ease) both;
+}
+
+/* Cross-document view transition (language switch, hard navigations). */
+@view-transition {
+  navigation: auto;
+}
+
+/* Scroll reveal. Only hidden when scripting is available, so the page is fully
+   readable without JavaScript. RevealObserver adds .is-in. */
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  [data-reveal] {
+    opacity: 0;
+    transform: translate3d(0, 1.75rem, 0);
+    transition:
+      opacity 900ms var(--ease),
+      transform 1000ms var(--ease);
+    transition-delay: calc(var(--i, 0) * 90ms);
+    will-change: opacity, transform;
+  }
+
+  [data-reveal="fade"] {
+    transform: none;
+  }
+
+  [data-reveal].is-in {
+    opacity: 1;
+    transform: none;
+    will-change: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
