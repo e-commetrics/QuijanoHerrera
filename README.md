@@ -26,6 +26,22 @@ bun run dev            # http://localhost:3000
 | `typecheck` | `tsc --noEmit` |
 | `images` | (`bun run images`) Rebuild optimized images from the brand folder (see below) |
 
+### Troubleshooting: "Cannot find module ..." after `bun install` (Windows)
+
+On some Windows machines Bun 1.4.x extracts most packages as **empty folders** (typical error:
+`Cannot find module '@swc/helpers/...'`). It is a Bun install bug, not a project problem.
+Reinstall the dependencies with pnpm through Node's bundled corepack (nothing to install),
+then keep using Bun for the scripts:
+
+```bash
+rm -rf node_modules
+corepack pnpm install --no-lockfile   # the "Ignored build scripts: unrs-resolver" notice is harmless
+bun run dev
+```
+
+Keep the project outside OneDrive-synced folders when possible: syncing `node_modules` is slow
+and error-prone. pnpm may create a local `pnpm-workspace.yaml`; it is git-ignored.
+
 ## Environment
 
 `NEXT_PUBLIC_SITE_URL` — public URL, **no trailing slash**. It feeds canonical URLs,

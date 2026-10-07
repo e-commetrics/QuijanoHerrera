@@ -43,3 +43,7 @@ next-env.d.ts
 
 # generated deploy artifacts
 *.zip
+
+# pnpm fallback (see README troubleshooting); Bun is the project package manager
+pnpm-lock.yaml
+pnpm-workspace.yaml
