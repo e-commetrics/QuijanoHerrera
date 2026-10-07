@@ -10,10 +10,10 @@ WhatsApp or their mail app; nothing is stored.
 
 ## Quick start
 
-Package manager: **Bun first, then pnpm/yarn. Never npm** (`DEPLOY_NEXTJS.md` §2).
+Package manager: **Bun** (`DEPLOY_NEXTJS.md` §2). Never npm. The lockfile is `bun.lock`.
 
 ```bash
-bun install            # or: pnpm install
+bun install
 cp .env.example .env   # set NEXT_PUBLIC_SITE_URL (see below)
 bun run dev            # http://localhost:3000
 ```
@@ -24,11 +24,7 @@ bun run dev            # http://localhost:3000
 | `build` | Static export to `out/` |
 | `lint` | ESLint (must pass before every deploy) |
 | `typecheck` | `tsc --noEmit` |
-| `images` | Rebuild optimized images from the brand folder (see below) |
-
-> **Note (Windows):** Bun 1.4.2 produced empty `node_modules` folders on the machine this
-> was built on, so the committed lockfile is `pnpm-lock.yaml`. On a machine where Bun works
-> you may use it; keep one lockfile in the repo.
+| `images` | (`bun run images`) Rebuild optimized images from the brand folder (see below) |
 
 ## Environment
 
@@ -77,7 +73,7 @@ global 404 is `src/app/global-not-found.tsx`.
 
 ### Images
 
-Sources are not in the repo (large, client-owned). `pnpm images` reads the brand folder
+Sources are not in the repo (large, client-owned). `bun run images` reads the brand folder
 (`QH_ASSETS_DIR`, default points to the OneDrive brand kit) and writes AVIF/WebP renditions,
 trimmed logos, favicons and the OG image. Commit the generated `public/img`, `public/og`,
 `src/app/icon.png`, `src/app/apple-icon.png` and `src/lib/images.generated.json`.
