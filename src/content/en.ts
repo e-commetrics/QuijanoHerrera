@@ -323,7 +323,7 @@ export const en: Dict = {
       message: "Hello, I would like to book a consultation about a civil matter.",
     },
     labels: { phone: "Phone", email: "Email", address: "Office", hours: "Hours" },
-    hours: "Monday to Friday, 9:00 AM to 6:00 PM · Saturday, 9:00 AM to 1:00 PM",
+    hours: "Monday to Friday, 9:00 AM to 6:00 PM",
     form: {
       title: "Or leave your details",
       name: "Name",

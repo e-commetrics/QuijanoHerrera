@@ -9,7 +9,7 @@ export const site = {
   name: "Quijano Herrera Abogados",
   shortName: "Quijano Herrera",
   phone: { display: "+52 664 193 2595", tel: "+526641932595", whatsapp: "526641932595" },
-  email: "despacho@quijanoherrera.com",
+  email: "despacho@quijanoherrera.mx",
   address: {
     street: "Luis Cabrera 1509-406",
     neighborhood: "Zona Urbana Río Tijuana",
