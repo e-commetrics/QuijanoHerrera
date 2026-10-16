@@ -335,8 +335,7 @@ export const es = {
       message: "Hola, quiero agendar una consulta sobre un asunto civil.",
     },
     labels: { phone: "Teléfono", email: "Correo", address: "Oficina", hours: "Horario" },
-    // Hours are a placeholder supplied by the developer, not confirmed by the firm.
-    hours: "Lunes a viernes, 9:00 a 18:00 · Sábado, 9:00 a 13:00",
+    hours: "Lunes a viernes, 9:00 a 18:00",
     form: {
       title: "O déjanos tus datos",
       name: "Nombre",
@@ -565,7 +564,7 @@ export const es = {
       {
         title: "Derechos ARCO y revocación del consentimiento",
         paragraphs: [
-          "Tienes derecho a acceder a tus datos personales, rectificarlos, cancelarlos u oponerte a su tratamiento (derechos ARCO), así como a revocar el consentimiento que nos hayas otorgado. Para ejercerlos, envía tu solicitud a despacho@quijanoherrera.com indicando tu nombre, el derecho que deseas ejercer y los datos a los que se refiere tu solicitud.",
+          "Tienes derecho a acceder a tus datos personales, rectificarlos, cancelarlos u oponerte a su tratamiento (derechos ARCO), así como a revocar el consentimiento que nos hayas otorgado. Para ejercerlos, envía tu solicitud a despacho@quijanoherrera.mx indicando tu nombre, el derecho que deseas ejercer y los datos a los que se refiere tu solicitud.",
         ],
       },
       {

@@ -28,7 +28,7 @@
   --line: rgba(27, 26, 23, 0.14);
   --line-strong: rgba(27, 26, 23, 0.32);
   --line-ink: rgba(240, 240, 232, 0.14);
-  --line-ink-strong: rgba(240, 240, 232, 0.32);
+  --line-ink-strong: rgba(240, 240, 232, 0.4);
 
   /* Type */
   --ff-serif: var(--font-serif), "PT Serif", Georgia, "Times New Roman", serif;
