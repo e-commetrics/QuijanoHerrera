@@ -20,6 +20,9 @@
 # production
 /build
 
+# Social media
+/social-media
+
 # misc
 .DS_Store
 *.pem

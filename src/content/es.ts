@@ -269,8 +269,8 @@ export const es = {
     ],
     foundersLabel: "Socios fundadores",
     founders: [
-      { name: "José Manuel Herrera Islas", role: "Socio fundador", initials: "JH" },
-      { name: "Luis Quijano del Mar", role: "Socio fundador", initials: "LQ" },
+      { name: "José ", role: "Socio fundador", initials: "JH" },
+      { name: "Luis ", role: "Socio fundador", initials: "LQ" },
     ],
     methodLabel: "Método de trabajo",
     method: ["Experiencia procesal", "Análisis jurídico", "Preparación documental", "Atención personalizada"],

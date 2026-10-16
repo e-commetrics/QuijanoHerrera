@@ -259,8 +259,8 @@ export const en: Dict = {
     ],
     foundersLabel: "Founding partners",
     founders: [
-      { name: "José Manuel Herrera Islas", role: "Founding partner", initials: "JH" },
-      { name: "Luis Quijano del Mar", role: "Founding partner", initials: "LQ" },
+      { name: "José", role: "Founding partner", initials: "JH" },
+      { name: "Luis", role: "Founding partner", initials: "LQ" },
     ],
     methodLabel: "Method",
     method: ["Procedural experience", "Legal analysis", "Document preparation", "Personal attention"],
